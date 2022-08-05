@@ -10,6 +10,28 @@ space = pygame.transform.scale(pygame.image.load('image_and_audio/space.png'), (
 yellow_spaceship = pygame.transform.scale(pygame.image.load('image_and_audio/spaceship_yellow.png'), (125, 65))
 red_spaceship = pygame.transform.scale(pygame.image.load('image_and_audio/spaceship_red.png'), (125, 65))
 
+def yellow_movement(yellow, keys_pressed):
+    # moving spaceships according to the keys pressed
+    if keys_pressed[pygame.K_a]:
+        yellow.x -= 3
+    if keys_pressed[pygame.K_d]:
+        yellow.x += 3
+    if keys_pressed[pygame.K_s]:
+        yellow.y += 3
+    if keys_pressed[pygame.K_w]:
+        yellow.y -= 3
+
+def red_movement(red, keys_pressed):
+    # moving spaceships according to the keys pressed
+    if keys_pressed[pygame.K_LEFT]:
+        red.x -= 3
+    if keys_pressed[pygame.K_RIGHT]:
+        red.x += 3
+    if keys_pressed[pygame.K_DOWN]:
+        red.y += 3
+    if keys_pressed[pygame.K_UP]:
+        red.y -= 3
+
 def show(red, yellow):
     # put images onto the screen
     window.blit(space, (0, 0))
@@ -37,6 +59,13 @@ def main():
                 run = False
                 return
         
+        # get pressed keys
+        keys_pressed = pygame.key.get_pressed()
+
+        # moving spaceships
+        yellow_movement(yellow, keys_pressed)
+        red_movement(red, keys_pressed)
+
         show(red, yellow)
 
 main()
