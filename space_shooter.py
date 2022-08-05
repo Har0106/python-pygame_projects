@@ -5,6 +5,11 @@ pygame.font.init()
 health_font = pygame.font.SysFont('Comic Sans MS', 25)
 winner_font = pygame.font.SysFont('Comic Sans MS', 100)
 
+# defining audio
+pygame.mixer.init()
+bullet_hit_sound = pygame.mixer.Sound('image_and_audio/Grenade+1.mp3')
+bullet_fire_sound = pygame.mixer.Sound('image_and_audio/Gun+Silencer.mp3')
+
 # setting up the window of the game
 width, height = 900, 500
 window = pygame.display.set_mode((width, height))
@@ -133,15 +138,19 @@ def main():
                 if event.key == pygame.K_LCTRL and len(yellow_bullets) < 5:
                     bullet = pygame.Rect(yellow.x + yellow.width, yellow.y + yellow.height//2 - 2, 10, 5)
                     yellow_bullets.append(bullet)
+                    bullet_fire_sound.play()
                 if event.key == pygame.K_RCTRL and len(red_bullets) < 5:
                     bullet = pygame.Rect(red.x, red.y + red.height//2 - 2, 10, 5)
                     red_bullets.append(bullet)
+                    bullet_fire_sound.play()
 
             # to decrease health if a spaceship is hit
             if event.type == yellow_event:
                 yellow_health -= 1
+                bullet_hit_sound.play()
             if event.type == red_event:
                 red_health -= 1
+                bullet_hit_sound.play()
 
         # to determine the winner
         if yellow_health <= 0:
