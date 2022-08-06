@@ -31,9 +31,9 @@ def yellow_movement(yellow, keys_pressed):
     # moving spaceships according to the keys pressed
     if keys_pressed[pygame.K_a] and yellow.x - 3 > 0:
         yellow.x -= 3
-    if keys_pressed[pygame.K_d] and yellow.x + 3 + yellow.width < border.x + 60:
+    if keys_pressed[pygame.K_d] and yellow.x + 3 + yellow.width < border.x + 80:
         yellow.x += 3
-    if keys_pressed[pygame.K_s] and yellow.y + 3 + yellow.height < height - 57:
+    if keys_pressed[pygame.K_s] and yellow.y + 3 + yellow.height < height - 12:
         yellow.y += 3
     if keys_pressed[pygame.K_w] and yellow.y - 3 > 0:
         yellow.y -= 3
@@ -42,9 +42,9 @@ def red_movement(red, keys_pressed):
     # moving spaceships according to the keys pressed
     if keys_pressed[pygame.K_LEFT] and red.x - 3 > border.x + border.width:
         red.x -= 3
-    if keys_pressed[pygame.K_RIGHT] and red.x + 3 + red.width < width + 60:
+    if keys_pressed[pygame.K_RIGHT] and red.x + 3 + red.width < width + 80:
         red.x += 3
-    if keys_pressed[pygame.K_DOWN] and red.y + 3 + red.height < height - 57:
+    if keys_pressed[pygame.K_DOWN] and red.y + 3 + red.height < height - 12:
         red.y += 3
     if keys_pressed[pygame.K_UP] and red.y - 3 > 0:
         red.y -= 3
