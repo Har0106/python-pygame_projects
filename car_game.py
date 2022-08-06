@@ -1,4 +1,5 @@
 import pygame
+import random
 
 width, height = 500, 600
 road_width = width//1.3
@@ -32,8 +33,9 @@ def show(user_car, game_car):
 
 # mainloop
 def main():
+    # creating user car and game car objects
     user_car = pygame.Rect(road_width - 120, height - 160, 150, 150)
-    game_car = pygame.Rect(road_width - 295, 10, 150, 150)
+    game_car = pygame.Rect(road_width - 295, 0, 150, 150)
 
     run = True
     while run:
@@ -49,9 +51,19 @@ def main():
                     user_car.x -= 175
                 if event.key == pygame.K_RIGHT and user_car.x + 175*2 < width:
                     user_car.x += 175
+        
+        # moving the enemy car
+        game_car.y += 1
+        if game_car.y >= height:
+            game_car.y = 0
+
+            # choosing a random place where the enemy car should appear
+            if random.randint(0, 1) == 0:
+                game_car.x = road_width - 295
+            else:
+                game_car.x = road_width - 120
 
         # show things onto the screen
         show(user_car, game_car)
 
 main()
-        
