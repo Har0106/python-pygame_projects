@@ -45,21 +45,26 @@ def show_lost():
 
 # mainloop
 def main():
+    # creating a clock object
+    clock = pygame.time.Clock()
+
     # creating user car and game car objects
     user_car = pygame.Rect(road_width - 120, height - 160, 150, 150)
     game_car = pygame.Rect(road_width - 295, 0, 150, 150)
 
     # initial speed of the car
-    speed = 1
+    speed = 200
     # initializing millisecond count
     count = 0
 
     run = True
     while run:
+        clock.tick(speed)
+
         # increasing the spped of the car per 10 seconds
         count += 1
         if count == 5000:
-            speed += 0.1
+            speed += 50
             count = 0
 
         for event in pygame.event.get():
@@ -77,7 +82,7 @@ def main():
                     user_car.x += 175
         
         # moving the enemy car
-        game_car.y += speed
+        game_car.y += 1
         if game_car.y >= height:
             game_car.y = 0
 
